@@ -108,6 +108,7 @@ app.get(
 
 //route to post
 app.post("/twitter/post", (req, res) => {
+  const { post } = req.body;
   let T = new Twit({
     consumer_key: process.env.TWITTER_API_KEY,
     consumer_secret: process.env.TWITTER_API_SECRET,
@@ -118,7 +119,7 @@ app.post("/twitter/post", (req, res) => {
   T.post(
     "statuses/update",
     {
-      status: "Hello world! - Posted with a dualpost app i am making",
+      status: post,
     },
     function (err, data, response) {
       if (err) return res.status(400).json(err);
@@ -164,14 +165,16 @@ app.get("/linkedin/getuser", (req, res) => {
 });
 
 //post to linkedin
-app.get("/linkedin/share", (req, res) => {
+app.post("/linkedin/share", (req, res) => {
+  const { post } = req.body;
+
   let postData = {
     author: `urn:li:person:${linkedInUser.id}`,
     lifecycleState: "PUBLISHED",
     specificContent: {
       "com.linkedin.ugc.ShareContent": {
         shareCommentary: {
-          text: "Hello world! - Posted with a dualpost app i am making",
+          text: post,
         },
         shareMediaCategory: "NONE",
       },
