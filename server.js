@@ -178,6 +178,11 @@ app.get("/logout", (req, res) => {
   req.session.destroy((err) => res.redirect(process.env.CLIENT));
 });
 
+//route to check if the server is running
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
