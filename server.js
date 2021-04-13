@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const axios = require("axios");
 const Twit = require("twit");
-const port = process.env.port || 3001;
+const port = process.env.PORT || 3001;
 const app = express();
 
 //twitter and linkedin user objects
